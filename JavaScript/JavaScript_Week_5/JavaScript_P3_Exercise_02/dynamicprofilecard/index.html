@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Profile Card</title>
+
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif, sans-serif;
+            background: linear-gradient(135deg, #ffd6e7, #d8f3dc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        #profileCard {
+            background: white;
+            width: 320px;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+        #profileImage {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ff8fab;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 10px;
+        }
+
+        p {
+            color: #666;
+        }
+
+        button {
+            background-color: #ff8fab;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff5d8f;
+        }
+
+        /* Active Status Class */
+        .active-status {
+            background-color: #d8f3dc !important;
+            border: 3px solid #2d6a4f;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="profileCard">
+        <img src="https://placehold.co/100x100" id="profileImage" alt="Profile Image">
+
+        <h2 id="profileName">John Doe</h2>
+
+        <p id="profileRole">Software Developer</p>
+
+        <p id="profileBio">
+            Passionate about coding and learning new technologies.
+        </p>
+
+        <button id="updateNameBtn">Update Name</button>
+        <button id="updateRoleBtn">Update Role</button>
+        <button id="toggleStatusBtn">Toggle Active Status</button>
+        <button id="changeImageBtn">Change Image</button>
+    </div>
+
+    <script>
+        // Select Elements
+        const profileName = document.getElementById("profileName");
+        const profileRole = document.getElementById("profileRole");
+        const profileImage = document.getElementById("profileImage");
+        const profileCard = document.getElementById("profileCard");
+
+        const updateNameBtn = document.getElementById("updateNameBtn");
+        const updateRoleBtn = document.getElementById("updateRoleBtn");
+        const toggleStatusBtn = document.getElementById("toggleStatusBtn");
+        const changeImageBtn = document.getElementById("changeImageBtn");
+
+        // Task 1: Update Name
+        updateNameBtn.addEventListener("click", function() {
+            const newName = prompt("Enter a new name:");
+
+            if (newName) {
+                profileName.textContent = newName;
+            }
+        });
+
+        // Task 1: Update Role
+        updateRoleBtn.addEventListener("click", function() {
+            const newRole = prompt("Enter a new role:");
+
+            if (newRole) {
+                profileRole.textContent = newRole;
+            }
+        });
+
+        // Task 2: Toggle Active Status
+        toggleStatusBtn.addEventListener("click", function() {
+            profileCard.classList.toggle("active-status");
+        });
+
+        // Task 3: Change Profile Image
+        changeImageBtn.addEventListener("click", function() {
+            const newImage = prompt("Enter a new image URL:");
+
+            if (newImage) {
+                profileImage.src = newImage;
+            }
+        });
+    </script>
+
+</body>
+</html>

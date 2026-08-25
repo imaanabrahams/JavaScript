@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="script" href="script.js">
+    <title>Magical Spell Generator</title>
+
+    <style>
+        body {
+            font-family: Times New Roman, Times, serif, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #c8f7c5, #ffd1dc);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #be86e0;
+        }
+
+        #spellArea {
+            width: 350px;
+            margin: 20px auto;
+            padding: 30px;
+            border: 3px solid #6a1b9a;
+            border-radius: 15px;
+            background-color: white;
+            font-size: 24px;
+            font-weight: bold;
+            min-height: 60px;
+            transition: background-color 0.5s ease;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #generateButton {
+            background-color: #ffb6c1;
+        }
+
+        #resetButton {
+            background-color: #98fb98;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            padding: 5px;
+        }
+
+        body {
+    font-family: Times New Roman, Times, serif, sans-serif;
+    text-align: center;
+    min-height: 100vh;
+    color: white;
+    background: linear-gradient(
+        -45deg,
+        #0f172a,
+        #312e81,
+        #4c1d95,
+        #1e3a8a
+    );
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#spellArea {
+    width: 450px;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    box-shadow:
+        0 0 20px rgba(0,255,255,0.4),
+        0 0 40px rgba(0,255,255,0.2);
+
+    transition: all 0.5s ease;
+}
+    </style>
+</head>
+<body>
+
+    <!-- Task 1 -->
+    <h1>Welcome to the Magical Spell Generator!</h1>
+
+    <div id="spellArea">
+        Your magical spell will appear here...
+    </div>
+
+    <!-- Task 2 -->
+    <button id="generateButton">Generate Spell</button>
+    <button id="resetButton">Reset</button>
+
+    <ul id="ingredientsList">
+        <li>Dragon Scale</li>
+        <li>Phoenix Feather</li>
+        <li>Unicorn Horn</li>
+    </ul>
+
+    <script>
+        const generateButton = document.getElementById("generateButton");
+        const resetButton = document.getElementById("resetButton");
+        const spellArea = document.getElementById("spellArea");
+        const ingredients = document.querySelectorAll("#ingredientsList li");
+
+        // Generate random color
+        function getRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+
+            return color;
+        }
+
+        // Generate spell
+        generateButton.addEventListener("click", () => {
+
+            let countdown = 3;
+
+            spellArea.textContent = countdown;
+
+            const timer = setInterval(() => {
+                countdown--;
+
+                if (countdown > 0) {
+                    spellArea.textContent = countdown;
+                } else {
+                    clearInterval(timer);
+
+                    const randomIndex = Math.floor(Math.random() * ingredients.length);
+                    const selectedIngredient = ingredients[randomIndex].textContent;
+
+                    spellArea.textContent =
+                        `✨ Magical Spell Created with ${selectedIngredient}! ✨`;
+
+                    spellArea.style.backgroundColor = getRandomColor();
+                }
+            }, 1000);
+        });
+
+        // Reset spell area
+        resetButton.addEventListener("click", () => {
+            spellArea.textContent = "Your magical spell will appear here...";
+            spellArea.style.backgroundColor = "white";
+        });
+
+        const spells = [
+    "Fireball of Eternity",
+    "Shadow Warp",
+    "Crystal Shield",
+    "Phoenix Rebirth",
+    "Lightning Surge",
+    "Dragon's Fury",
+    "Moonlight Blessing",
+    "Celestial Storm"
+];
+
+generateButton.addEventListener("click", () => {
+
+    let countdown = 3;
+    spellArea.innerHTML = `<h2>${countdown}</h2>`;
+
+    const timer = setInterval(() => {
+        countdown--;
+
+        if (countdown > 0) {
+            spellArea.innerHTML = `<h2>${countdown}</h2>`;
+        } else {
+            clearInterval(timer);
+
+            const ingredient =
+                ingredients[Math.floor(Math.random() * ingredients.length)].textContent;
+
+            const spell =
+                spells[Math.floor(Math.random() * spells.length)];
+
+            spellArea.innerHTML = `
+                <h2>✨ ${spell} ✨</h2>
+                <p>Powered by ${ingredient}</p>
+            `;
+
+            spellArea.style.backgroundColor = getRandomColor();
+        }
+    }, 1000);
+});
+    </script>
+
+</body>
+</html>
